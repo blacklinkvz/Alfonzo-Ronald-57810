@@ -1,0 +1,22 @@
+{% extends 'entidades/index.html' %}
+
+
+{% block titulo %}
+<h1 class="masthead-subheading font-weight-light mb-0">Agregar Doctores</h1>
+{% endblock titulo %}
+
+
+{% block contenido %}
+
+<form action="" method="post">
+    <div class="form-group">
+    {% csrf_token %}
+    <table>
+        <br>
+        {{ form }}
+    </table>
+    <br>
+    <input class="btn btn-primary btn-block" type="submit" value="Guardar">
+</div>
+</form>
+{% endblock contenido %}

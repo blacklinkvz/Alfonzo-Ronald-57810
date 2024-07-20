@@ -1,0 +1,55 @@
+{% extends 'entidades/index.html' %}
+
+
+{% block titulo %}
+<h1>Fichas Medicas</h1>
+{% endblock titulo %}
+
+
+{% block contenido %}
+<table>
+    <tr>
+        <td width="200"><h2>Agregar</h2></td>
+        <td>
+            <a href="{% url 'fichaCreate' %}"
+            class="btn btn-primary btn-sm"><i class="fa fa-plus fa-lg" title="Crear"></i>
+            </a>
+        </td>
+    </tr>    
+</table>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>id</th>
+            <th>Cita</th>
+            <th>Diagnostico</th>
+            <th>Receta</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for ficha in ficha_list %}
+            <tr>
+                <td>{{ ficha.id }}</td>
+                <td>{{ ficha.cita }}</td>
+                <td>{{ ficha.diagnostico }}</td>
+                <td>{{ ficha.receta }}</td>
+                <td>
+                    <a
+                      href="{% url 'fichaUpdate' ficha.id %}"
+                      class="btn btn-primary"
+                      style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;"
+                      ><i class="fa fa-edit fa-sm" title="Editar"></i>
+                    </a>
+                    <a
+                      href="{% url 'fichaDelete' ficha.id %}"
+                      class="btn btn-danger"
+                      style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;"
+                      ><i class="fa fa-trash fa-sm" title="Eliminar"></i>
+                    </a>                
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock contenido %}

@@ -1,0 +1,64 @@
+{% extends 'entidades/index.html' %}
+
+
+{% block titulo %}
+<h1 class="masthead-subheading font-weight-light mb-0">Especialidades</h1>
+{% endblock titulo %}
+
+
+{% block contenido %}
+
+<form action="{% url 'encontrarEspecialidad' %}" method="get">
+    <div class="form-group">
+    {% csrf_token %}
+    <table>
+        <br>
+        <p>Buscar Especialidad: <input type="Text" name="buscar" id="buscar"> <input class="btn btn-primary btn-sm" type="submit" value="Buscar">
+    </table>
+    
+</div>
+</form>
+
+<table>
+    <tr>
+        <td width="200"><h3>Agregar</h3></td>
+        <td>
+            <a href="{% url 'especialidadForm' %}"
+            class="btn btn-primary btn-sm"><i class="fa fa-plus fa-lg" title="Crear"></i>
+            </a>
+        </td>
+    </tr>    
+</table>
+
+<table class="table table-striped">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">id</th>
+            <th scope="col">Nombre especialidad</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for especialidad in especialidades %}
+            <tr>
+                <td>{{ especialidad.id }}</td>
+                <td>{{ especialidad.nombre }}</td>
+                <td>
+                    <a
+                      href="{% url 'especialidadUpdate' especialidad.id %}"
+                      class="btn btn-primary"
+                      style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;"
+                      ><i class="fa fa-edit fa-sm" title="Editar"></i>
+                    </a>
+                    <a
+                      href="{% url 'especialidadDelete' especialidad.id %}"
+                      class="btn btn-danger"
+                      style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;"
+                      ><i class="fa fa-trash fa-sm" title="Eliminar"></i>
+                    </a>                
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock contenido %}
